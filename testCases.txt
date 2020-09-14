@@ -1,0 +1,501 @@
+7
+{":\":123{\"{": {
+    "456": ",\",}\"}:\":\"",
+    "789": "no :: surprise",
+    "\"\\123\\\"": "\\{\\{\\}\\}\\",
+    "json": "\"address\":{\"streetAddress\":\"2ndStreet\",\"\\\\\":\"\\\\\"}"
+}
+}
+<o>
+    <:":123{"{>
+        <456>,",}"}:":"</456>
+        <789>no :: surprise</789>
+        <"\123\">\{\{\}\}\</"\123\">
+        <json>"address":{"streetAddress":"2ndStreet","\\":"\\"}</json>
+    </:":123{"{>
+</o>
+
+16
+{
+    "firstName": "John",
+    "lastName": "Smith",
+    "address": {
+        "streetAddress": "2ndStreet",
+        "city": "NewYork",
+        "state": "NY",
+        "\"": "\\\\\\\\",
+        "\\\\\\\\" : {
+            "esc\\aped":"\"\"hello\"\"",
+            "\\||":"||\\",
+            "\\\"": "\"\\"
+        }
+    },
+    "esc\\aped": "\"hello\""
+}
+<o>
+    <firstName>John</firstName>
+    <lastName>Smith</lastName>
+    <address>
+        <streetAddress>2ndStreet</streetAddress>
+        <city>NewYork</city>
+        <state>NY</state>
+        <">\\\\</">
+        <\\\\>
+            <esc\aped>""hello""</esc\aped>
+            <\||>||\</\||>
+            <\">"\</\">
+        </\\\\>
+    </address>
+    <esc\aped>"hello"</esc\aped>
+</o>
+
+29
+{
+    "html":    {
+        "head": {
+            "link": "-\"rel = \"'index'.css\"\"",
+            "script": {
+                "-src": "404\\405.js",
+                "depends": [
+                    {"url": "3.js"},"1.js","2.js"
+                ]
+            }
+        },
+        "body": {
+            "ul": [
+                "<li class = \"li1\" />",
+                "<li class = \"li2\" />",
+                "<li class = \"li3\" />",
+                "<li class = \"li4\" />"
+            ],
+            "video": {
+                "-source": "\"src\"\\src\\",
+                "vobj": {
+                    "url": "none/none.mp4",
+                    "pause": "false"
+                }
+            },
+            "div": ["-class","-id","val"]
+        }
+    }
+}
+<o>
+    <html>
+        <head>
+            <link>-"rel = "'index'.css""</link>
+            <script src="404\405.js">
+                <depends>
+                    <url>3.js</url>
+                </depends>
+                <depends>1.js</depends>
+                <depends>2.js</depends>
+            </script>
+        </head>
+        <body>
+            <ul><li class = "li1" /></ul>
+            <ul><li class = "li2" /></ul>
+            <ul><li class = "li3" /></ul>
+            <ul><li class = "li4" /></ul>
+            <video source=""src"\src\">
+                <vobj>
+                    <url>none/none.mp4</url>
+                    <pause>false</pause>
+                </vobj>
+            </video>
+            <div>-class</div>
+            <div>-id</div>
+            <div>val</div>
+        </body>
+    </html>
+</o>
+
+//之后的样例的key若以"-"开头，应成为标签的属性
+6
+{
+    "head": {
+        "-hh":["gh","fhq","233",{"5":"7"},"456"],
+        "meta0": [{"-1":"2","3":"4"},{"1":"2","-3":"4"}]
+    }
+}
+<o>
+    <head hh="gh,fhq,233,[object Object],456">
+        <meta0 1="2">
+            <3>4</3>
+        </meta0>
+        <meta0 3="4">
+            <1>2</1>
+        </meta0>
+    </head>
+</o>
+
+52
+{
+  "head": {
+    "meta0"   : [{"-1":"2","3":"4"},{"1":"2","-3":"4"}],
+    "meta1"   : [
+      { "-charset": "utf-8" },
+      {
+        "-name": "viewport",
+        "-content": "width=device-width, initial-scale=0,user-scalable=yes,maximum-scale=1.0"
+      },
+      {
+        "-name": "keywords",
+        "-content": "在线XML转JSON,JSON转XML,JSON XML"
+      },
+      {
+        "-name": "description",
+        "-content": "在线XML转JSON,JSON转XML"
+      }
+    ],"-title": "在线XML转JSON,JSON转XML-BeJSON.com",
+    "link": [
+      {
+        "-rel": "stylesheet",
+        "-type": "text/css",
+        "-href": "/static/bejson/css/global.min.css?20200630"
+      },
+      {
+        "-rel": "stylesheet",
+        "-type": "text/css",
+        "-href": "/static/bejson/css/indexCodeMirror.min.css"
+      },
+      {
+        "-rel": "stylesheet",
+        "-type": "text/css",
+        "-href": "/static/bejson/css/swiper.min.css"
+      },
+      {
+        "-rel": "preload",
+        "-href": "https://adservice.google.com/adsid/integrator.js?domain=www.bejson.com",
+        "-as": "script"
+      }
+    ],
+    "script": [
+      { "-src":"https://www.googletagservices.com/activeview/js/current/osd.js?cb=%2Fr20100101" },
+      { "-src": "https://hm.baidu.com/hm.js?4aa52dbe1c3f25aa133d68ee023b1c61" },
+      { "-src": "/static/ydxyt/www.bejson.com.js" },
+      " function uvmcofpcqrgz(blockid) { }  ",
+      {
+        "-type": "text/javascript",
+        "-src": "https://adservice.google.com/adsid/integrator.js?domain=www.bejson.com"
+      }
+    ]
+  }
+}
+<o>
+    <head title="在线XML转JSON,JSON转XML-BeJSON.com">
+        <meta0 1="2">
+            <3>4</3>
+        </meta0>
+        <meta0 3="4">
+            <1>2</1>
+        </meta0>
+        <meta1 charset="utf-8" />
+        <meta1 name="viewport" content="width=device-width, initial-scale=0,user-scalable=yes,maximum-scale=1.0" />
+        <meta1 name="keywords" content="在线XML转JSON,JSON转XML,JSON XML" />
+        <meta1 name="description" content="在线XML转JSON,JSON转XML" />
+        <link rel="stylesheet" type="text/css" href="/static/bejson/css/global.min.css?20200630" />
+        <link rel="stylesheet" type="text/css" href="/static/bejson/css/indexCodeMirror.min.css" />
+        <link rel="stylesheet" type="text/css" href="/static/bejson/css/swiper.min.css" />
+        <link rel="preload" href="https://adservice.google.com/adsid/integrator.js?domain=www.bejson.com" as="script" />
+        <script src="https://www.googletagservices.com/activeview/js/current/osd.js?cb=%2Fr20100101" />
+        <script src="https://hm.baidu.com/hm.js?4aa52dbe1c3f25aa133d68ee023b1c61" />
+        <script src="/static/ydxyt/www.bejson.com.js" />
+        <script> function uvmcofpcqrgz(blockid) { }  </script>
+        <script type="text/javascript" src="https://adservice.google.com/adsid/integrator.js?domain=www.bejson.com" />
+    </head>
+</o>
+
+63
+{
+  "div": {
+    "script": "uvmcofpcqrgz('UNDER_CATEGORY');",
+    "a": [
+      {
+        "-href": "/knownjson/aboutjson/",
+        "-target": "_blank",
+        "-style": "font-size: 12px;color:black;",
+        "#text": "什么是JSON",
+        "-id": ["xhr"," xxhr",{"x":"x"}]
+      },
+      {
+        "-href": "/knownjson/demo/",
+        "-target": "_blank",
+        "-style": "font-size: 12px;color:black;",
+        "#text": "JSON的用法"
+      },
+      {
+        "-href": "/jsoneditoronline/",
+        "-target": "_blank",
+        "-style": "font-size: 12px;",
+        "#text": "JSON在线编辑"
+      },
+      {
+        "-rel": "external nofollow",
+        "-href": "http://t.cn/A6LM1biX",
+        "-target": "_blank",
+        "#text": "七牛云"
+      },
+      {
+        "-rel": "external nofollow",
+        "-href": "https://url.cn/5lGcoUy",
+        "-target": "_blank",
+        "#text": "腾讯云(99元/年)"
+      },
+      {
+        "-rel": "nofollow",
+        "-style": "color: red;",
+        "-href": "http://y3e.cn/wBag2",
+        "-target": "_blank",
+        "#text": "香港/美国服务器低至23元/月"
+      },
+      {
+        "-rel": "external nofollow",
+        "-href": "https://www.hellojava.com/article/84",
+        "-target": "_blank",
+        "#text": "jQuery常用代码"
+      },
+      {
+        "-href": "/apidoc/jquery/",
+        "-target": "_blank",
+        "#text": "jQuery文档"
+      },
+      {
+        "-rel": "external nofollow",
+        "-href": "http://y3e.cn/fJ0MH",
+        "-target": "_blank",
+        "-style": "color: blue;",
+        "#text": "阿*里*云3折"
+      }
+    ]
+  }
+}
+<o>
+    <div>
+        <script>uvmcofpcqrgz('UNDER_CATEGORY');</script>
+        <a href="/knownjson/aboutjson/" target="_blank" style="font-size: 12px;color:black;" id="xhr, xxhr,[object Object]">
+            <#text>什么是JSON</#text>
+        </a>
+        <a href="/knownjson/demo/" target="_blank" style="font-size: 12px;color:black;">
+            <#text>JSON的用法</#text>
+        </a>
+        <a href="/jsoneditoronline/" target="_blank" style="font-size: 12px;">
+            <#text>JSON在线编辑</#text>
+        </a>
+        <a rel="external nofollow" href="http://t.cn/A6LM1biX" target="_blank">
+            <#text>七牛云</#text>
+        </a>
+        <a rel="external nofollow" href="https://url.cn/5lGcoUy" target="_blank">
+            <#text>腾讯云(99元/年)</#text>
+        </a>
+        <a rel="nofollow" style="color: red;" href="http://y3e.cn/wBag2" target="_blank">
+            <#text>香港/美国服务器低至23元/月</#text>
+        </a>
+        <a rel="external nofollow" href="https://www.hellojava.com/article/84" target="_blank">
+            <#text>jQuery常用代码</#text>
+        </a>
+        <a href="/apidoc/jquery/" target="_blank">
+            <#text>jQuery文档</#text>
+        </a>
+        <a rel="external nofollow" href="http://y3e.cn/fJ0MH" target="_blank" style="color: blue;">
+            <#text>阿*里*云3折</#text>
+        </a>
+    </div>
+</o>
+
+//嵌套数组
+5
+{
+"hd":{
+"x":["1","2","-3",["1","2",{"2":"2"}],["1",["2",{"-2":"2"}]]]
+}
+}
+<o>
+    <hd>
+        <x>1</x>
+        <x>2</x>
+        <x>-3</x>
+        <x>1</x>
+        <x>2</x>
+        <x>
+            <2>2</2>
+        </x>
+        <x>1</x>
+        <x>2</x>
+        <x 2="2" />
+    </hd>
+</o>
+
+113
+{
+  "div": {
+    "-id": "header",
+    "div": [
+      {
+        "-id": "blogTitle",
+        "a": {
+          "-id": "lnkBlogLogo",
+          "-href": "https://www.cnblogs.com/szy-wlxy/",
+          "img": {
+            "-id": "blogLogo",
+            "-src": "/skins/custom/images/logo.gif",
+            "-alt": "返回主页"
+          }
+        },
+        "h1": {
+          "a": {
+            "-id": "Header1_HeaderTitle",
+            "-class": "headermaintitle HeaderMainTitle",
+            "-href": "https://www.cnblogs.com/szy-wlxy/",
+            "#text": "wlxy"
+          }
+        },
+        "h2": "
+
+"
+      },
+      {
+        "-id": "navigator",
+        "ul": {
+          "-id": "navList",
+          "li": [
+            {
+              "a": {
+                "-id": "blog_nav_sitehome",
+                "-class": "menu",
+                "-href": "https://www.cnblogs.com/",
+                "#text": "
+博客园"
+              }
+            },
+            {
+              "a": {
+                "-id": "blog_nav_myhome",
+                "-class": "menu",
+                "-href": "https://www.cnblogs.com/szy-wlxy/",
+                "#text": "
+首页"
+              }
+            },
+            {
+              "a": {
+                "-id": "blog_nav_newpost",
+                "-class": "menu",
+                "-href": "https://i.cnblogs.com/EditPosts.aspx?opt=1",
+                "#text": "
+新随笔"
+              }
+            },
+            {
+              "a": {
+                "-id": "blog_nav_contact",
+                "-class": "menu",
+                "-href": "https://msg.cnblogs.com/send/wlxy",
+                "#text": "
+联系"
+              }
+            },
+            {
+              "a": {
+                "-id": "blog_nav_rss",
+                "-class": "menu",
+                "-href": "javascript:void(0)",
+                "-data-rss": "https://www.cnblogs.com/szy-wlxy/rss/",
+                "#text": "
+订阅"
+              }
+            },
+            {
+              "a": {
+                "-id": "blog_nav_admin",
+                "-class": "menu",
+                "-href": "https://i.cnblogs.com/",
+                "#text": "
+管理"
+              }
+            }
+          ]
+        },
+        "div": {
+          "-class": "blogStats",
+          "span": [
+            {
+              "-id": "stats_post_count",
+              "#text": "随笔 - 
+22 "
+            },
+            {
+              "-id": "stats_article_count",
+              "#text": "文章 - 
+0"
+            },
+            {
+              "-id": "stats-comment_count",
+              "#text": "评论 - 
+3"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+<o>
+    <div id="header">
+        <div id="blogTitle">
+            <a id="lnkBlogLogo" href="https://www.cnblogs.com/szy-wlxy/">
+                <img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" />
+            </a>
+            <h1>
+                <a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/szy-wlxy/">
+                    <#text>wlxy</#text>
+                </a>
+            </h1>
+            <h2></h2>
+        </div>
+        <div id="navigator">
+            <ul id="navList">
+                <li>
+                    <a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+                        <#text>博客园</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/szy-wlxy/">
+                        <#text>首页</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+                        <#text>新随笔</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/wlxy">
+                        <#text>联系</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/szy-wlxy/rss/">
+                        <#text>订阅</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+                        <#text>管理</#text>
+                    </a>
+                </li>
+            </ul>
+            <div class="blogStats">
+                <span id="stats_post_count">
+                    <#text>随笔 - 22 </#text>
+                </span>
+                <span id="stats_article_count">
+                    <#text>文章 - 0</#text>
+                </span>
+                <span id="stats-comment_count">
+                    <#text>评论 - 3</#text>
+                </span>
+            </div>
+        </div>
+    </div>
+</o>

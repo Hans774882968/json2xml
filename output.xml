@@ -1,0 +1,60 @@
+<o>
+    <div id="header">
+        <div id="blogTitle">
+            <a id="lnkBlogLogo" href="https://www.cnblogs.com/szy-wlxy/">
+                <img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" />
+            </a>
+            <h1>
+                <a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/szy-wlxy/">
+                    <#text>wlxy</#text>
+                </a>
+            </h1>
+            <h2></h2>
+        </div>
+        <div id="navigator">
+            <ul id="navList">
+                <li>
+                    <a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+                        <#text>博客园</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/szy-wlxy/">
+                        <#text>首页</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+                        <#text>新随笔</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/wlxy">
+                        <#text>联系</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/szy-wlxy/rss/">
+                        <#text>订阅</#text>
+                    </a>
+                </li>
+                <li>
+                    <a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+                        <#text>管理</#text>
+                    </a>
+                </li>
+            </ul>
+            <div class="blogStats">
+                <span id="stats_post_count">
+                    <#text>随笔 - 22 </#text>
+                </span>
+                <span id="stats_article_count">
+                    <#text>文章 - 0</#text>
+                </span>
+                <span id="stats-comment_count">
+                    <#text>评论 - 3</#text>
+                </span>
+            </div>
+        </div>
+    </div>
+</o>

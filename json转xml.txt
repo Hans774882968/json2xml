@@ -1,0 +1,67 @@
+已实现：
+0-不需要安装任何库，直接copy代码编译就行了。
+1-正确找到字符串的边界。目前没有发现寻找出错的情况。
+2-解析json，输出缩进为4空格的xml文档。
+3-若无文本则标签自闭合。
+4-在表示key的字符串前面加"-"。若value为对象，会给父标签加属性key="[object Object]"；若为数组，会给父标签加一个字符串
+类型的属性，字符串由数组各元素的字符串表示（若是obj则为[object Object]，嵌套数组则返回内部拼接后的字符串（递归定义））
+拼接而成；若为字符串，返回该字符串。
+TODO：
+1-若key==="#text"应不视为标签，而视为文本。
+2-耦合度太高了QAQ。比如parse_obj()要被迫维护参数int tag_attr = 0，来实现加属性的功能。不是面向对象编程？递归嘛懂得都懂
+，这里面水很深（划掉）。
+假设：
+1-json是完全合法的。只是为了不处理脏数据，不寻找语法错误……
+2-字符串外的无关字符只有空格。且字符串内才能出现反斜杠，反斜杠后面只能跟"和\。
+3-只有数组、对象、字符串3种类型。
+
+这个代码是做了csp201709-3，被字符串边界判定困扰数日以后，心血来潮写的。https://www.bejson.com/xml2json/里面不少
+特性都实现出来了……部分数据见testCases.txt。可以直接找个网站复制它的html，丢bejson转成json，作为测试数据。
+
+前置知识：CFG、避免左递归……但其实写这些代码的时候我并没有写生成式，只是用了生成式那种间接递归的写法。
+
+一、字符串边界判定的可靠算法，粘贴在这里：
+若碰到一个反斜杠，则状态转换。即“无反斜杠需要匹配”变成“有”，反之同理。若碰到一个引号，如果此时无反斜杠需要匹配，则
+说明已经到达边界。否则未到达边界，并标记此时已无反斜杠需要匹配。对该算法进行拓展可以支持\n、\r等符号，但为了简化问题，
+我们还是沿用题目的假设。
+二、简单介绍下json里面的数组（这个容器和c++不一样，啥都能装）怎么parse。parse_val顾名思义，解析value的。value可能是
+对象、字符串或数组。当你讨论数组的时候，发现了一个困难：数组的每个元素都需要再讨论类型。于是我们自然而然地希望能复用
+parse_val讨论类型的能力。这个事情确实能做到，如下：
+string parse_array(string ky,int dep,int tag_attr){
+    advance();
+    string res = parse_val(ky,dep,tag_attr);
+    advance();
+    while(token == ','){
+        res += (tag_attr ? "," : "") + parse_val(ky,dep,tag_attr);//如果应该丢到父标签的属性里，tag_attr = 1。
+        advance();
+    }
+    return res;
+}
+可以看到，parse_array还是熟悉的“多个相同事物串联”的编码套路，预读取一个元素，然后不断判定逗号。顺便一说，因为递归定
+义的合理性，我们发现自动加属性到正确的父节点、嵌套数组=没有嵌套这些特性，已经自动具备了。
+parse_val则改进为如下：
+string parse_val(string ky,int dep,int tag_attr){
+    if(!tag_attr){
+        if(s[idx] == '{'){
+            return parse_obj(ky,dep + 4,tag_attr);
+        }
+        else if(s[idx] == '['){
+            return parse_array(ky,dep,tag_attr);
+        }
+        string val = clean_str(parse_str());
+        string res = tab(dep + 4) + "<" + ky + ">" + val + "</" + ky + ">\n";
+        return res;
+    }
+    if(s[idx] == '{'){
+        parse_obj(ky,dep + 4,tag_attr);
+        return "[object Object]";
+    }
+    else if(s[idx] == '['){
+        return parse_array(ky,dep,tag_attr);
+    }
+    return clean_str(parse_str());
+}
+我开发的时候，是先打的parse_array，再加上tag_attr参数。
+而parse_obj和之前那份代码（见https://github.com/Hans774882968/some_csp_solutions/blob/master/csp201709-3-v2.cpp）
+一样，选择完全相信parse_val的能力（说白了还是个人无能，不会解耦，划掉）。但是作了个改进，就是分hd、body、tl三部分，
+分别对应xml标签的3部分。
